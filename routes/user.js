@@ -19,20 +19,46 @@ router.get('/:id', function(req, res, next) {
     }).catch(next);
 });
 
+
+
+
+
+
+
 /**
  * 获取所有用户
  */
-router.get('/', function(req, res, next) {
+
+router.get('/',function (req,res,next) {
+  User.getAllUser({
+    limit: parseInt(req.query.limit) || 10, //默认查询10条
+    offset: parseInt(req.query.offset) || 0 //默认查询第一页
+  })
+    .then(function(result) {
+    console.log(req.query.limit)
+     /* console.log(result.count);
+      console.log(result.rows);*/
+     result.limit = parseInt(req.query.limit);
+     result.offset = parseInt(req.query.offset);
+      res.json({
+        status:1,
+        data:result
+      })
+    }).catch(next);
+})
+
+/*router.get('/', function(req, res, next) {
     User.getUsers({
         limit: parseInt(req.query.limit) || 10, //默认查询10条
         offset: parseInt(req.query.offset) || 0 //默认查询第一页
     }).then(function(result) {
+
         res.json({
             status: 1,
             data: result
         });
     }).catch(next);
-});
+});*/
 
 /**
  * 新增

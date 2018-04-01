@@ -45,6 +45,10 @@ module.exports = function(sequelize, DataTypes) {
 
 //静态方法
 const classMethods = {
+
+  getAllUser:function (options) {
+    return this.findAndCountAll(options)
+  },
     //根据id查询
     getUserById: function(id) {
         return this.findById(id);
