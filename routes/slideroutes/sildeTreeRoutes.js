@@ -33,4 +33,18 @@ router.post('/',function (req,res,next) {
   })
 })
 
+/*更新*/
+router.post("/:id/update", function(req, res, next) {
+  slideTree.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  }).then(function(role) {
+    res.json({
+      status: 1,
+      data: role
+    })
+  }).catch(next);
+});
+
 module.exports = router;
