@@ -18,3 +18,5 @@ routes 里面主要是引用models里面的文件进行数据库的操作增删�
 
 routes 里面的index.js 是用来定义接口名称并导出routes里面的书写逻辑代码的文件 \<br>
 
+models (classMethods)-> routes
+

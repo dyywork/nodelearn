@@ -6,11 +6,16 @@ var User = sequelize.import("./user");
 var LoginInfo = sequelize.import("./loginInfo");
 var Address = sequelize.import("./address");
 var Role = sequelize.import("./role");
-
+var slide = sequelize.import('./slide/slideTree')
+var child = sequelize.import('./slide/childtree')
 //建立模型之间关联关系
 User.hasOne(LoginInfo);
 LoginInfo.belongsTo(User);
 
+//slide.belongsTo(User);
+slide.hasMany(child,{
+  foreignKey:'parentid'
+})
 User.hasMany(Address, {
     foreignKey: 'user_id',
     targetKey: 'id',
