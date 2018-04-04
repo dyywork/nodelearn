@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27ddea15-355b-4072-bdcc-942bc66d1923" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/slide/childtree.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/slideroutes/childtreeRoutes.js" />
+    <list default="true" id="27ddea15-355b-4072-bdcc-942bc66d1923" name="Default" comment="创建需要的表">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/ref.js" afterPath="$PROJECT_DIR$/models/ref.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/user.js" afterPath="$PROJECT_DIR$/routes/user.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -58,8 +52,8 @@
           <file leaf-file-name="childtreeRoutes.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/slideroutes/childtreeRoutes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+                <state relative-caret-position="374">
+                  <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -432,7 +426,7 @@
       <workItem from="1522582631988" duration="5354000" />
       <workItem from="1522629834446" duration="239000" />
       <workItem from="1522741564911" duration="5611000" />
-      <workItem from="1522819730984" duration="5608000" />
+      <workItem from="1522819730984" duration="5671000" />
     </task>
     <task id="LOCAL-00001" summary="修改查询所有user的方式">
       <created>1522588697220</created>
@@ -441,11 +435,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522588697220</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="创建需要的表">
+      <created>1522829851543</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1522829851543</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23646000" />
+    <option name="totallyTimeSpent" value="23709000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-15" y="13" width="1936" height="1056" extended-state="0" />
@@ -478,7 +479,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="修改查询所有user的方式" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改查询所有user的方式" />
+    <MESSAGE value="创建需要的表" />
+    <option name="LAST_COMMIT_MESSAGE" value="创建需要的表" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -578,6 +580,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="18" column="55" lean-forward="false" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -740,6 +743,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -853,14 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/slide/slideTree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/role.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -877,10 +873,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/slide/slideTree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/slideroutes/childtreeRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        <state relative-caret-position="374">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
