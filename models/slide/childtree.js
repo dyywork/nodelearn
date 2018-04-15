@@ -19,7 +19,7 @@ module.exports=function (sequelize,DataTypes) {
       allowNull:false
     },
     show:{
-      type:DataTypes.INTEGER,
+      type:DataTypes.BOOLEAN,
       allowNull:false
     }
   },{

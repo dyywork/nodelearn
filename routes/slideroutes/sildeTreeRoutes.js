@@ -46,5 +46,20 @@ router.post("/:id/update", function(req, res, next) {
     })
   }).catch(next);
 });
+/**
+ * 删除
+ */
+router.get("/:id/del", function(req, res, next) {
+  slideTree.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(result) {
+    res.json({
+      status: 1,
+      data: result
+    });
+  }).catch(next);
+});
 
 module.exports = router;

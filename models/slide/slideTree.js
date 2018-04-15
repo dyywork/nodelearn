@@ -14,7 +14,7 @@ module.exports=function (sequelize, DataTypes) {
       allowNull:false
     },
     parentshow:{
-      type:DataTypes.INTEGER,
+      type:DataTypes.BOOLEAN,
       allowNull:false
     }
   },{
