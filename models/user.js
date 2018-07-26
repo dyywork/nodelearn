@@ -9,9 +9,9 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true, //自动递增
       primaryKey: true //主键
     },
-    firstname: {
+    username: {
       type: DataTypes.STRING,
-      field: "first_name",
+      field: "username",
       allowNull: false
     },
     lastname: {
@@ -30,10 +30,11 @@ module.exports = function (sequelize, DataTypes) {
     }
   }, {
     underscored: true, //额外字段以下划线来分割
-    // createdAt: "created_at",
-    // updatedAt: "updated_at",
-    timestamps: false, //取消默认生成的createdAt、updatedAt字段
+
+    timestamps: true, //取消默认生成的createdAt、updatedAt字段
     freezeTableName: true, // Model 对应的表名将与model名相同
+    createdAt: "created_at",
+    updatedAt: "updated_at",
     //静态方法，即user模型自带的方法
     classMethods: classMethods,
     comment: "用户信息类",

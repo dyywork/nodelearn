@@ -18,7 +18,8 @@ router.get('/', function (req, res, next) {
   }).then(function (result) {
     res.json({
       status: 1,
-      data: result
+      data: result,
+      msg:''
     });
   }).catch(next)
 })

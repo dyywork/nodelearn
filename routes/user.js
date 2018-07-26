@@ -6,21 +6,23 @@ var {sequelize} = require("../config/db");
 var User = sequelize.import("../models/user");
 var Address = sequelize.import("../models/address");
 var LoginInfo = sequelize.import("../models/loginInfo");
+var notice = require('../common/notice');
 
 /*登录接口*/
 
 router.post('/login', function (req, res, next) {
   User.findOne({
     where: {
-      firstname: req.body.username,
-      password:req.body.password
+      username: req.body.userName,
+      password: req.body.password
     }
   }).then(function (login) {
     if (login !== null) {
+
       res.json({
-        status: 1,
-        data: login,
-        msg:"登录成功"
+        status: '1',
+        // type:req.body.type,
+        currentAuthority: 'admin'
       })
     } else {
       res.json({
@@ -53,18 +55,35 @@ router.get('/:id', function (req, res, next) {
  */
 
 router.get('/', function (req, res, next) {
+
+  var likeSelect = {
+    username: {
+      $like: '%' + req.query.username + '%'
+    },
+    password: {
+      $like: "%" + req.query.password + "%"
+    }
+  };
+  if (req.query.username === '') {
+    delete likeSelect.username;
+  }else if (req.query.password === '') {
+    delete likeSelect.password;
+  }
   User.getAllUser({
+    where: {
+      $or: likeSelect
+    },
     limit: parseInt(req.query.limit) || 10, //默认查询10条
-    offset: parseInt(req.query.offset) || 0 //默认查询第一页
-  })
-    .then(function (result) {
-      result.limit = parseInt(req.query.limit);
-      result.offset = parseInt(req.query.offset);
-      res.json({
-        status: 1,
-        data: result
-      })
-    }).catch(next);
+    offset: (parseInt(req.query.offset)-1) * parseInt(req.query.limit) || 0 //默认查询第一页
+
+  }).then(function (result) {
+    result.limit = parseInt(req.query.limit);
+    result.offset = parseInt(req.query.offset);
+    res.json({
+      status: 1,
+      data: result
+    })
+  }).catch(next);
 })
 
 /*router.get('/', function(req, res, next) {
@@ -83,18 +102,44 @@ router.get('/', function (req, res, next) {
 /**
  * 新增
  */
+
 router.post('/', function (req, res, next) {
-  User.create(req.body).then(function (user) {
-    return user.createRole({
-      roleName: req.body.roleName
-    });
+  User.findOrCreate({
+    where: {
+      username: req.body.username
+    }
+    , defaults: req.body
+  }).spread(function (user, created) {
+    if (created) {
+      user.createRole({
+        roleName: req.body.roleName
+      });
+      return notice.USERHAVE(created);
+    } else {
+      return notice.USERHAVE(created);
+    }
   }).then(function (result) {
     res.json({
-      status: 1,
-      data: result
+      status: res.statusCode,
+      data: null,
+      msg: result,
+
     });
   }).catch(next);
 });
+
+/*router.post('/', function (req, res, next) {
+ User.create(req.body).then(function (user) {
+ return user.createRole({
+ roleName: req.body.roleName
+ });
+ }).then(function (result) {
+ res.json({
+ status: 1,
+ data: result
+ });
+ }).catch(next);
+ });*/
 
 
 /**
