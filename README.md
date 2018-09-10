@@ -48,3 +48,7 @@ routes 里面的index.js 是用来定义接口名称并导出routes里面的书�
 
 models (classMethods)-> routes
 
+## 📜 License
+Copyright (c) 2018 09 http://github.com/dyywork
+
+The MIT License
