@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var { sequelize, Sequelize } = require("../config/db");
+const { sequelize, Sequelize } = require("../config/db");
 
-var User = sequelize.import("../models/user");
-var Address = sequelize.import("../models/address");
-var LoginInfo = sequelize.import("../models/loginInfo");
+const User = sequelize.import("../models/user");
+const Address = sequelize.import("../models/address");
+const LoginInfo = sequelize.import("../models/loginInfo");
 
 /**
  * 获取所有地址（包括用户信息，不包括用户的话去掉include即可）

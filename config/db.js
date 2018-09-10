@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('test', 'root', '', {
+const sequelize = new Sequelize('test', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
     pool: {
@@ -10,6 +10,14 @@ const sequelize = new Sequelize('test', 'root', '', {
 });
 
 //测试数据库链接
+sequelize.authenticate().then(() => {
+    console.log("数据库连接成功");
+}).catch((err) => {
+    //数据库连接失败时打印输出
+    console.error(err);
+    throw err;
+});
+/*
 sequelize.authenticate().then(function() {
     console.log("数据库连接成功");
 }).catch(function(err) {
@@ -17,6 +25,7 @@ sequelize.authenticate().then(function() {
     console.error(err);
     throw err;
 });
+*/
 
 exports.sequelize = sequelize;
 exports.Sequelize = Sequelize;

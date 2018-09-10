@@ -1,4 +1,32 @@
 # node-sequelize
+*目录结构
+```
+ nodelearn
+    |——bin
+    |   |——www.js         //node服务启动
+    |
+    |——common
+    |   |——notice.js
+    |
+    |——config
+    |   |——db.js           //数据库连接
+    |
+    |——models              //对应数据库里面的表名以及字段名
+    |   |——ref.js          //配置表之间的关联关系和自动建表
+    |   |——user.js
+    |
+    |——public              //公共样式 静态文件
+    |
+    |——routes
+    |   |——user.js
+    |
+    |——views               //页面文件
+    |
+    |——app.js              //加载主外键关系及创建数据库
+    |
+    |__package.json
+
+```
 nodejs使用sequelize的api测试应用<br>
 
 models 里面的是用来对应数据库里面的表名以及字段名的 \<br>

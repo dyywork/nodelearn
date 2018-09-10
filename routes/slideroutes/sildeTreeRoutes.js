@@ -1,13 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var {sequelize} = require('../../config/db');
+const { sequelize } = require('../../config/db');
 
-
-
-
-var slideTree = sequelize.import('../../models/slide/slideTree');
-var child = sequelize.import('../../models/slide/childtree');
+const slideTree = sequelize.import('../../models/slide/slideTree');
+const child = sequelize.import('../../models/slide/childtree');
 
 /*查询所有*/
 router.get('/', function (req, res, next) {
