@@ -1,12 +1,13 @@
-var express = require('express');
-var router = express.Router();
+//const express = require('express');
+import express from 'express'
+const router = express.Router();
 
-var {sequelize} = require("../config/db");
-
-var User = sequelize.import("../models/user");
-var Address = sequelize.import("../models/address");
-var LoginInfo = sequelize.import("../models/loginInfo");
-var notice = require('../common/notice');
+const { sequelize } = require("../config/db");
+const User = sequelize.import("../models/user");
+const Address = sequelize.import("../models/address");
+const LoginInfo = sequelize.import("../models/loginInfo");
+//const notice = require('../common/notice');
+import { USERHAVE } from '../common/notice'
 
 /*登录接口*/
 
@@ -114,9 +115,9 @@ router.post('/', function (req, res, next) {
       user.createRole({
         roleName: req.body.roleName
       });
-      return notice.USERHAVE(created);
+      return USERHAVE(created);
     } else {
-      return notice.USERHAVE(created);
+      return USERHAVE(created);
     }
   }).then(function (result) {
     res.json({
