@@ -1,4 +1,7 @@
 # node-sequelize
+
+## sequelize http://docs.sequelizejs.com/
+
 *目录结构
 ```
  nodelearn
