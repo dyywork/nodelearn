@@ -1,30 +1,31 @@
 /*
 * 侧边栏
 * */
-module.exports=function (sequelize, DataTypes) {
-  return sequelize.define("slidetree",{
+
+import { sequelize, Sequelize } from '../../config/db'
+
+export default sequelize.define("slidetree",{
     id:{
-      type: DataTypes.INTEGER,
-      allowNull:false,
-      autoIncrement:true,
-      primaryKey:true
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        autoIncrement:true,
+        primaryKey:true
     },
     maintitle:{
-      type:DataTypes.STRING,
-      allowNull:false
+        type:Sequelize.STRING,
+        allowNull:false
     },
     parentshow:{
-      type:DataTypes.BOOLEAN,
-      allowNull:false
+        type:Sequelize.BOOLEAN,
+        allowNull:false
     }
-  },{
+},{
     underscored:true,
     timestamps:false,
     freezeTableName:true,
     classMethods:classMethods,
     comment:"侧边栏信息"
-  })
-}
+})
 
 const classMethods = {
   getAllTree:function (options) {

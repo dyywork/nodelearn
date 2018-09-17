@@ -1,12 +1,8 @@
-//const express = require('express');
 import express from 'express'
 const router = express.Router();
 
-const { sequelize } = require("../config/db");
-const User = sequelize.import("../models/user");
-const Address = sequelize.import("../models/address");
-const LoginInfo = sequelize.import("../models/loginInfo");
-//const notice = require('../common/notice');
+import User from '../models/user'
+import LoginInfo from '../models/loginInfo'
 import { USERHAVE } from '../common/notice'
 
 /*登录接口*/

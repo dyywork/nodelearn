@@ -1,35 +1,36 @@
-module.exports=function (sequelize,DataTypes) {
-  return sequelize.define('childtree',{
+
+import { sequelize, Sequelize} from '../../config/db'
+
+export default sequelize.define('childtree',{
     subid:{
-      type:DataTypes.INTEGER,
-      allowNull:false,
-      autoIncrement:true,
-      primaryKey:true
+        type:Sequelize.INTEGER,
+        allowNull:false,
+        autoIncrement:true,
+        primaryKey:true
     },
     title:{
-      type:DataTypes.STRING,
-      allowNull:false
+        type:Sequelize.STRING,
+        allowNull:false
     },
     parentid:{
-      type:DataTypes.INTEGER,
-      allowNull:false
+        type:Sequelize.INTEGER,
+        allowNull:false
     },
     baseurl:{
-      type:DataTypes.STRING,
-      allowNull:false
+        type:Sequelize.STRING,
+        allowNull:false
     },
     show:{
-      type:DataTypes.BOOLEAN,
-      allowNull:false
+        type:Sequelize.BOOLEAN,
+        allowNull:false
     }
-  },{
+},{
     underscored:true,
     timestamps:false,
     freezeTableName:true,
     classMethods:classMethods,
     comment:'slideChild'
-  })
-}
+})
 
 const classMethods = {
   getAllTree:function (options) {

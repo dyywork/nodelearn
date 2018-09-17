@@ -1,12 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express'
+const router = express.Router();
 
-var {sequelize} = require('../../config/db');
+import childtree from '../../models/slide/childtree'
 
-
-
-
-var childtree = sequelize.import('../../models/slide/childtree');
 /*查询*/
 router.get('/:id', function (req, res, next) {
   childtree.getAllTree({

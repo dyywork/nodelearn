@@ -1,34 +1,36 @@
 /**
  * 用户类
  */
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define("user", {
+
+import { sequelize, Sequelize } from '../config/db'
+
+export default sequelize.define("user", {
     id: {
-      type: DataTypes.INTEGER,
-      allowNull: false, //非空
-      autoIncrement: true, //自动递增
-      primaryKey: true //主键
+        type: Sequelize.INTEGER,
+        allowNull: false, //非空
+        autoIncrement: true, //自动递增
+        primaryKey: true //主键
     },
     username: {
-      type: DataTypes.STRING,
-      field: "username",
-      allowNull: false
+        type: Sequelize.STRING,
+        field: "username",
+        allowNull: false
     },
     lastname: {
-      type: DataTypes.STRING,
-      field: "last_name",
-      allowNull: false
+        type: Sequelize.STRING,
+        field: "last_name",
+        allowNull: false
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false
+        type: Sequelize.STRING,
+        allowNull: false
     },
     active: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
     }
-  }, {
+}, {
     underscored: true, //额外字段以下划线来分割
     timestamps: true, //取消默认生成的createdAt、updatedAt字段
     freezeTableName: true, // Model 对应的表名将与model名相同
@@ -40,12 +42,10 @@ module.exports = function (sequelize, DataTypes) {
     // paranoid: true      //虚拟删除
     //实例方法
     // instanceMethods: instanceMethods
-  });
-}
+})
 
 //静态方法
 const classMethods = {
-
   getAllUser: function (options) {
     return this.findAndCountAll(options)
   },

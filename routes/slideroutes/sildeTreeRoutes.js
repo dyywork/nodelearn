@@ -1,10 +1,8 @@
-const express = require('express');
+import express from 'express'
 const router = express.Router();
 
-const { sequelize } = require('../../config/db');
-
-const slideTree = sequelize.import('../../models/slide/slideTree');
-const child = sequelize.import('../../models/slide/childtree');
+import child from '../../models/slide/childtree'
+import slideTree from '../../models/slide/slideTree'
 
 /*查询所有*/
 router.get('/', function (req, res, next) {

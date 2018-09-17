@@ -1,10 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express'
+const router = express.Router();
 
-var { sequelize, Sequelize } = require("../config/db");
-
-var User = sequelize.import("../models/user");
-var Role = sequelize.import("../models/role");
+import User from '../models/user'
+import Role from '../models/role'
 
 /**
  * 获取所有角色（包括用户信息，不包括用户的话去掉include即可）

@@ -1,13 +1,14 @@
 /**
  * 模型关联类
  */
-var { sequelize } = require("../config/db");
-var User = sequelize.import("./user");
-var LoginInfo = sequelize.import("./loginInfo");
-var Address = sequelize.import("./address");
-var Role = sequelize.import("./role");
-var slide = sequelize.import('./slide/slideTree')
-var child = sequelize.import('./slide/childtree')
+import { sequelize } from '../config/db'
+import User from './user'
+import Address from './address'
+import Role from './role'
+import LoginInfo from './loginInfo'
+import child from './slide/childtree'
+import slide from './slide/slideTree'
+
 //建立模型之间关联关系
 User.hasOne(LoginInfo);
 LoginInfo.belongsTo(User);
