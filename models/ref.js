@@ -13,7 +13,7 @@ import slide from './slide/slideTree'
 User.hasOne(LoginInfo);
 LoginInfo.belongsTo(User);
 
-//slide.belongsTo(User);
+// slide.belongsTo(Role);
 slide.hasMany(child,{
   foreignKey:'parentid'
 })
@@ -30,6 +30,5 @@ User.belongsToMany(Role, {
 Role.belongsToMany(User, {
     through: 'userRoles'
 });
-
 //创建表
-sequelize.sync({ force: false });
+sequelize.sync({ force: false, match: /est$/ });

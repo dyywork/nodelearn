@@ -37,7 +37,7 @@ export default sequelize.define("user", {
     createdAt: "created_at",
     updatedAt: "updated_at",
     //静态方法，即user模型自带的方法
-    classMethods: classMethods,
+    /*classMethods: {}*/
     comment: "用户信息类",
     // paranoid: true      //虚拟删除
     //实例方法
@@ -45,32 +45,3 @@ export default sequelize.define("user", {
 })
 
 //静态方法
-const classMethods = {
-  getAllUser: function (options) {
-    return this.findAndCountAll(options)
-  },
-  //根据id查询
-  getUserById: function (id) {
-    return this.findById(id);
-  },
-  //获取所有
-  getUsers: function (options) {
-    return this.findAll(options);
-  },
-  //根据id更新数据
-  updateUserById: function (values, id) {
-    return this.update(values, {
-      where: {
-        id: id
-      }
-    });
-  },
-  //根据id删除数据
-  deleteById: function (id) {
-    return this.destroy({
-      where: {
-        id: id
-      }
-    })
-  }
-}

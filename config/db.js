@@ -1,16 +1,5 @@
-// const Sequelize = require('sequelize');
 import Sequelize from 'sequelize'
-/*export function sequelize() {
-    new Sequelize('test', 'root', 'root', {
-        host: 'localhost',
-        dialect: 'mysql',
-        pool: {
-            max: 5,
-            min: 0,
-            idle: 10000
-        }
-    });
-}*/
+
 const sequelize = new Sequelize('test', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',

@@ -1,8 +1,39 @@
 import express from 'express'
 const router = express.Router();
+import { Sequelize } from '../config/db'
+const Op = Sequelize.Op
 
 import User from '../models/user'
 import Role from '../models/role'
+
+/**
+ * 测试猜想
+ */
+/*router.get('/test',function (req, res, next) {
+    User.addrole(Role,{ through: {status: 'started'}}).then(user => {
+        res.json({
+            status: 1,
+            data: user
+        })
+    }).catch(next)
+})*/
+/**
+ * 获取所有角色(不包括用户信息)
+ */
+router.get("/findAll", function (req, res, next) {
+    Role.findAll({
+        where: {
+            role_name: {
+                [Op.ne]: null
+            }
+        }
+    }).then(roles => {
+        res.json({
+            status: 1,
+            data: roles
+        })
+    }).catch(next)
+})
 
 /**
  * 获取所有角色（包括用户信息，不包括用户的话去掉include即可）

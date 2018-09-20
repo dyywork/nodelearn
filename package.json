@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www --exec babel-node --presets es2015,stage-2"
+    "dev": "nodemon --inspect ./bin/www 3001 --exec babel-node --presets es2015,stage-2"
   },
   "dependencies": {
     "body-parser": "~1.17.1",

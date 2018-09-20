@@ -1,9 +1,13 @@
 import express from 'express'
 const router = express.Router();
+import { Sequelize } from '../config/db'
+const Op = Sequelize.Op
 
+import { getAllUser, getUserById, deleteById, getUsers, updateUserById } from '../sql/userService'
 import User from '../models/user'
 import LoginInfo from '../models/loginInfo'
 import { USERHAVE } from '../common/notice'
+
 
 /*登录接口*/
 
@@ -15,7 +19,6 @@ router.post('/login', function (req, res, next) {
     }
   }).then(function (login) {
     if (login !== null) {
-
       res.json({
         status: '1',
         // type:req.body.type,
@@ -35,10 +38,8 @@ router.post('/login', function (req, res, next) {
  * 获取单个用户
  */
 
-
-
 router.get('/:id', function (req, res, next) {
-  User.getUserById(req.params.id).then(function (result) {
+  getUserById(req.params.id).then(function (result) {
     res.json({
       status: 1,
       data: result
@@ -52,49 +53,32 @@ router.get('/:id', function (req, res, next) {
  */
 
 router.get('/', function (req, res, next) {
-
-  var likeSelect = {
-    username: {
-      $like: '%' + req.query.username + '%'
-    },
-    password: {
-      $like: "%" + req.query.password + "%"
-    }
-  };
-  if (req.query.username === '') {
-    delete likeSelect.username;
-  }else if (req.query.password === '') {
-    delete likeSelect.password;
-  }
-  User.getAllUser({
+  getAllUser({
     where: {
-      $or: likeSelect
+        [Op.and]: [
+            {
+                username: {
+                    [Op.like]: '%' + req.query.username + '%'
+                }
+            },
+            {
+                lastname: {
+                    [Op.like]: '%' + req.query.lastname + '%'
+                }
+            }
+        ]
     },
-    limit: parseInt(req.query.limit) || 10, //默认查询10条
-    offset: (parseInt(req.query.offset)-1) * parseInt(req.query.limit) || 0 //默认查询第一页
-
-  }).then(function (result) {
-    result.limit = parseInt(req.query.limit);
-    result.offset = parseInt(req.query.offset);
+    limit: parseInt(req.query.size) || 10, //默认查询10条
+    offset: (parseInt(req.query.page)-1) * parseInt(req.query.size) || 0 //默认查询第一页
+  }).then((result) => {
+    result.size = parseInt(req.query.size);
+    result.page = parseInt(req.query.page);
     res.json({
       status: 1,
       data: result
     })
   }).catch(next);
 })
-
-/*router.get('/', function(req, res, next) {
- User.getUsers({
- limit: parseInt(req.query.limit) || 10, //默认查询10条
- offset: parseInt(req.query.offset) || 0 //默认查询第一页
- }).then(function(result) {
-
- res.json({
- status: 1,
- data: result
- });
- }).catch(next);
- });*/
 
 /**
  * 新增
@@ -143,7 +127,7 @@ router.post('/', function (req, res, next) {
  * 修改
  */
 router.post('/:id/update', function (req, res, next) {
-  User.updateUserById(req.body, req.params.id).then(function (result) {
+  updateUserById(req.body, req.params.id).then(function (result) {
     res.json({
       status: 1,
       data: result
@@ -155,7 +139,7 @@ router.post('/:id/update', function (req, res, next) {
  * 删除
  */
 router.get('/:id/del', function (req, res, next) {
-  User.deleteById(req.params.id).then(function (result) {
+  deleteById(req.params.id).then(function (result) {
     res.json({
       status: 1,
       data: result
