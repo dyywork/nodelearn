@@ -8,15 +8,19 @@ import Role from '../models/role'
 
 /**
  * 测试猜想
+ * 分配用户给角色
  */
-/*router.get('/test',function (req, res, next) {
-    User.addrole(Role,{ through: {status: 'started'}}).then(user => {
-        res.json({
-            status: 1,
-            data: user
-        })
-    }).catch(next)
-})*/
+router.get('/addUser',function (req, res, next) {
+    User.findById(req.query.userId).then(user => {
+        Role.findById(req.query.roleId).then(role => {
+            user.addRole(role).then(respose => {
+                res.json({
+                    data: respose
+                })
+            })
+        }).catch()
+    }).catch()
+})
 /**
  * 获取所有角色(不包括用户信息)
  */
@@ -45,8 +49,10 @@ router.get("/", function(req, res, next) {
         }]
     }).then(function(roles) {
         res.json({
-            status: 1,
-            data: roles
+            "version":[{
+                "value":"1.0.1",
+                "content":"1.增加自动升级功能;</br>2.优化图片上传;</br>3.优化暂停任务可从相册选择;</br>4.上传图片显示进度条"
+            }]
         });
     }).catch(next);
 });

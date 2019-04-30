@@ -6,8 +6,30 @@ const Op = Sequelize.Op
 import { getAllUser, getUserById, deleteById, getUsers, updateUserById } from '../sql/userService'
 import User from '../models/user'
 import LoginInfo from '../models/loginInfo'
-import { USERHAVE } from '../common/notice'
+import { USERHAVE, NOROLE, NOUSER, OPERATION, EORROR } from '../common/notice'
+import Role from "../models/role";
 
+/**
+ * 测试猜想
+ * 分配角色给用户
+ */
+router.get('/addRole',function (req, res, next) {
+    Role.findById(req.query.roleId).then(role => {
+        if (role !== null && role !== '') {
+            User.findById(req.query.userId).then(user => {
+                if (user !== null && user !== '') {
+                    role.addUser(user).then(respose => {
+                        res.json(OPERATION())
+                    })
+                } else {
+                  res.json(NOUSER())
+                }
+            }).catch(next)
+        } else {
+          res.json(NOROLE())
+        }
+    }).catch(next)
+})
 
 /*登录接口*/
 
@@ -20,9 +42,10 @@ router.post('/login', function (req, res, next) {
   }).then(function (login) {
     if (login !== null) {
       res.json({
-        status: '1',
+        status: 1,
         // type:req.body.type,
-        currentAuthority: 'admin'
+        currentAuthority: 'admin',
+        data: login
       })
     } else {
       res.json({
@@ -40,10 +63,57 @@ router.post('/login', function (req, res, next) {
 
 router.get('/:id', function (req, res, next) {
   getUserById(req.params.id).then(function (result) {
-    res.json({
-      status: 1,
-      data: result
-    });
+      res.json(result)
+   /* res.json({
+      name: 'Serati Ma',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+      userid: '00000001',
+      email: 'antdesign@alipay.com',
+      signature: '海纳百川，有容乃大',
+      title: '交互专家',
+      group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+      tags: [
+          {
+              key: '0',
+              label: '很有想法的',
+          },
+          {
+              key: '1',
+              label: '专注设计',
+          },
+          {
+              key: '2',
+              label: '辣~',
+          },
+          {
+              key: '3',
+              label: '大长腿',
+          },
+          {
+              key: '4',
+              label: '川妹子',
+          },
+          {
+              key: '5',
+              label: '海纳百川',
+          },
+      ],
+      notifyCount: 12,
+      country: 'China',
+      geographic: {
+          province: {
+              label: '浙江省',
+              key: '330000',
+          },
+          city: {
+              label: '杭州市',
+              key: '330100',
+          },
+      },
+      address: '西湖区工专路 77 号',
+      phone: '0752-268888888',
+      status: 'ok'
+    });*/
   }).catch(next);
 });
 

@@ -29,6 +29,39 @@ export default sequelize.define("user", {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        field: 'name',
+        allowNull: false
+    },
+    avatar: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    title: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    signature: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    group: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    notifyCount: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    country: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     underscored: true, //额外字段以下划线来分割
